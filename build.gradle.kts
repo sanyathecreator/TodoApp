@@ -36,6 +36,7 @@ javafx {
 }
 
 dependencies {
+    implementation("io.github.palexdev:materialfx:11.17.0")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }

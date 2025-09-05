@@ -4,6 +4,6 @@ module com.sanyathecreator.todoapp {
     requires jdk.compiler;
 
 
-    opens com.sanyathecreator.todoapp to javafx.fxml;
+    opens com.sanyathecreator.todoapp.controller to javafx.fxml;
     exports com.sanyathecreator.todoapp;
 }
