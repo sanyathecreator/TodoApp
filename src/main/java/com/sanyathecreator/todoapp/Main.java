@@ -22,8 +22,10 @@ public class Main extends Application {
                 .build().setGlobal();
 
         Parent root = FXMLLoader.load(getClass().getResource("/com/sanyathecreator/todoapp/todo.fxml"));
-
         Scene scene = new Scene(root);
+
+        String css = this.getClass().getResource("/com/sanyathecreator/todoapp/styles.css").toExternalForm();
+        scene.getStylesheets().add(css);
         scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.DECORATED);
         stage.setTitle("TodoApp");
