@@ -1,5 +1,7 @@
 package com.sanyathecreator.todoapp.controller;
 
+import com.sanyathecreator.todoapp.dto.TaskDTO;
+import com.sanyathecreator.todoapp.managers.TaskList;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,31 +15,35 @@ public class TodoController {
     @FXML
     public MFXComboBox statusComboBox;
     @FXML
-    public VBox taskList;
+    public VBox taskListVBox;
+    private TaskList taskList;
 
     public void initialize() {
+        taskList = new TaskList();
         statusComboBox.getItems().addAll("All", "ToDo", "In Progress", "Done");
         statusComboBox.setValue("All");
-        // Dummy data
-        addTask("Create a JavaFX Project", LocalDateTime.now().minusMinutes(3), "ToDo");
-        addTask("Learn React", LocalDateTime.now().minusMinutes(9), "In Progress");
-        addTask("Create a TodoApp", LocalDateTime.now().minusHours(3).minusMinutes(17), "ToDo");
     }
 
     @FXML
     public void handleAddTask(ActionEvent actionEvent) {
-        addTask("New Task", LocalDateTime.now(), "Todo");
+        addTask("New Task", "A new task desc", LocalDateTime.now(), "Todo");
     }
 
-    private void addTask(String name, LocalDateTime timeStamp, String status) {
+    private void addTask(String title, String description, LocalDateTime dateAdded, String status) {
+        TaskDTO task = new TaskDTO(title, description, dateAdded, status);
+        taskList.addTask(task);
+        displayTask(task);
+    }
+
+    private void displayTask(TaskDTO task) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass()
                     .getResource("/com/sanyathecreator/todoapp/task-card.fxml"));
             HBox taskCard = loader.load();
             TaskCardController taskCardController = loader.getController();
-            taskCardController.setTaskDetails(name, timeStamp, status);
+            taskCardController.setTaskDetails(task.getTitle(), task.getDateAdded(), task.getStatus());
 
-            taskList.getChildren().add(taskCard);
+            taskListVBox.getChildren().add(taskCard);
         } catch (Exception e) {
             e.printStackTrace();
         }

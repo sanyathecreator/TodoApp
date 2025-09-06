@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.*?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.sanyathecreator.todoapp.controller.TodoController"
@@ -27,7 +24,7 @@
             <MFXComboBox fx:id="statusComboBox" promptText="All" prefHeight="30"/>
         </HBox>
         <ScrollPane fitToWidth="true" fitToHeight="true" vbarPolicy="NEVER" hbarPolicy="NEVER">
-            <VBox fx:id="taskList" spacing="10" prefHeight="400"/>
+            <VBox fx:id="taskListVBox" spacing="10" prefHeight="400"/>
         </ScrollPane>
     </VBox>
 </AnchorPane>
