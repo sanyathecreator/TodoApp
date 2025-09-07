@@ -6,8 +6,11 @@ import io.github.palexdev.materialfx.controls.MFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.time.LocalDateTime;
 
@@ -26,7 +29,28 @@ public class TodoController {
 
     @FXML
     public void handleAddTask(ActionEvent actionEvent) {
-        addTask("New Task", "A new task desc", LocalDateTime.now(), "ToDo");
+        showAddTaskDialog();
+    }
+
+    private void showAddTaskDialog() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass()
+                    .getResource("/com/sanyathecreator/todoapp/task_add_dialog.fxml"));
+            VBox dialogPane = loader.load();
+
+            TaskAddDialogController dialogController = loader.getController();
+            dialogController.setMainController(this);
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Add New Task");
+            dialogStage.initModality(Modality.APPLICATION_MODAL); // User can interact only with this dialog
+            Scene scene = new Scene(dialogPane);
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void addTask(String title, String description, LocalDateTime dateAdded, String status) {
