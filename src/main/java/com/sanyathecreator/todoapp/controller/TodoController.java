@@ -26,7 +26,7 @@ public class TodoController {
 
     @FXML
     public void handleAddTask(ActionEvent actionEvent) {
-        addTask("New Task", "A new task desc", LocalDateTime.now(), "Todo");
+        addTask("New Task", "A new task desc", LocalDateTime.now(), "ToDo");
     }
 
     private void addTask(String title, String description, LocalDateTime dateAdded, String status) {
