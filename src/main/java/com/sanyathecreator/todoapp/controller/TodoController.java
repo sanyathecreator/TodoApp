@@ -45,6 +45,8 @@ public class TodoController {
             dialogStage.setTitle("Add New Task");
             dialogStage.initModality(Modality.APPLICATION_MODAL); // User can interact only with this dialog
             Scene scene = new Scene(dialogPane);
+            String css = this.getClass().getResource("/com/sanyathecreator/todoapp/addtaskstyles.css").toExternalForm();
+            scene.getStylesheets().add(css);
             dialogStage.setScene(scene);
             dialogStage.showAndWait();
 
